@@ -31,7 +31,7 @@ jobs:
         with: { subject-path: 'dist/*' }
       - uses: actions/attest-sbom@bd218ad0dbcb3e146bd073d1d9c6d78e08aa8a0b
         with: { subject-path: 'dist/*.jar', sbom-path: 'dist/sbom.json' }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with: { name: release-artifacts, path: dist/* }
       - env: { GH_TOKEN: '${{ github.token }}' }
         run: gh release create "${{ inputs.tag || github.ref_name }}" dist/* --generate-notes --verify-tag || gh release upload "${{ inputs.tag || github.ref_name }}" dist/* --clobber
