@@ -64,6 +64,7 @@ tasks.register<Exec>("buildSite") {
         val out = layout.buildDirectory.dir("site").get().asFile
         out.deleteRecursively(); out.mkdirs()
         copy { from("site"); into(out) }
+        file("site/app.js").copyTo(File(out, "app.js"), overwrite = true)
         copy { from(tasks.javadoc); into(File(out, "api")) }
     }
     commandLine("node", "gradle/site.mjs", "docs", "build/site/docs")
