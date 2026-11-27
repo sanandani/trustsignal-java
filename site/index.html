@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TrustSignal Java</title><meta name="description" content="A conceptual Java reference for trust signal verification and ACE-U profiles."><link rel="stylesheet" href="/style.css"></head>
+<body><main><p class="eyebrow">Java 21+ · Apache-2.0 · zero runtime dependencies</p><h1>TrustSignal Java</h1><p class="lead">A reference library for verifying professional identity claims and representing trust across Authenticity, Credibility, Empathy, and Uniqueness.</p><p class="notice">Conceptual framework; not empirically validated. ACE-U values are not a measure of a person's worth or overall trustworthiness.</p><h2>Install</h2><pre><code>git clone https://github.com/sanandani/trustsignal-java.git
+cd trustsignal-java
+./gradlew build</code></pre><h2>Quick start</h2><p>Construct an <code>AceUScorer</code> with four dimension weights, then pass evidence with an explicit verification outcome. The result preserves separate values and confidence for every dimension.</p><pre><code>var result = scorer.score(List.of(evidence));
+result.profile().dimensions().forEach((dimension, score) -&gt;
+    System.out.println(dimension + ": " + score.value()));</code></pre><nav><a href="https://github.com/sanandani/trustsignal-java">Repository</a><a href="/docs/ARCHITECTURE.html">Architecture</a><a href="/docs/DESIGN.html">Research mapping</a><a href="/docs/THREAT_MODEL.html">Threat model</a><a href="/api/">API Javadoc</a></nav></main></body></html>

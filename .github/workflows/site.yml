@@ -1,0 +1,24 @@
+name: Deploy static site
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', 'site/**', 'src/**', 'build.gradle.kts']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
+        with: { distribution: temurin, java-version: '21', cache: gradle }
+      - run: ./gradlew buildSite
+      - uses: Azure/static-web-apps-deploy@1a947af7e53e6a7b7e7b06e13747a9ee2f9b9260
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: build/site
+          output_location: ''
+          skip_app_build: true

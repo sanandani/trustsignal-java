@@ -1,0 +1,28 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
+        with: { distribution: temurin, java-version: '21', cache: gradle }
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a
+      - run: ./gradlew build
+      - run: mkdir -p dist && cp build/libs/*.jar dist/ && ./gradlew cyclonedxBom && cp build/reports/bom.json dist/sbom.json
+      - uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
+        with: { subject-path: 'dist/*' }
+      - uses: actions/attest-sbom@4b3f2f4a0b75f2f97c90d35a056f43f62612b78c
+        with: { subject-path: 'dist/*.jar', sbom-path: 'dist/sbom.json' }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with: { name: release-artifacts, path: dist/* }
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes
+      - uses: actions/attest@cf4f31c0ddc60be29a18a8ea5dc55d20209a2586
+        with: { subject-path: 'dist/*', predicate-type: 'https://slsa.dev/provenance/v1' }
