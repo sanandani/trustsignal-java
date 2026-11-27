@@ -25,7 +25,7 @@ result.profile().dimensions().forEach((dimension, score) ->
     System.out.println(dimension + ": " + score.value() + " (confidence " + score.confidence() + ")"));
 ```
 
-Run the composition-root example with `./gradlew run` (or `io.github.sanandani.trustsignal.example.Main` from an IDE). See [API Javadoc](https://sanandani.github.io/trustsignal-java/api/) and [docs](docs/ARCHITECTURE.md).
+Run the composition-root example with `./gradlew run` (or `io.github.sanandani.trustsignal.example.Main` from an IDE). See [API Javadoc](https://mango-moss-03b8cdf0f.5.azurestaticapps.net/api/) and [docs](docs/ARCHITECTURE.md).
 
 ## Design principles
 
@@ -56,6 +56,6 @@ This library does not determine identity, truth, hiring suitability, character, 
 - [Design and research mapping](docs/DESIGN.md)
 - [Threat model](docs/THREAT_MODEL.md)
 - [Roadmap](docs/ROADMAP.md)
-- [API Javadoc](https://sanandani.github.io/trustsignal-java/api/)
+- [API Javadoc](https://mango-moss-03b8cdf0f.5.azurestaticapps.net/api/)
 
 Licensed under Apache-2.0. See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
