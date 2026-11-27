@@ -148,9 +148,9 @@ function updateExplanation(scenario) {
   const verified = scenario.signals.filter(s => s.outcome === 'verified').length;
   const bits = [];
   if (verified) bits.push(`${verified} verified signal${verified === 1 ? '' : 's'} contribute at full configured weight`);
-  if (inferred) bits.push(`${inferred} inferred signal${inferred === 1 ? '' : 's'} are discounted by confidence`);
-  if (unverifiable) bits.push(`${unverifiable} unknown signal${unverifiable === 1 ? '' : 's'} leave values unchanged and reduce confidence`);
-  if (invalid) bits.push(`${invalid} invalid signal${invalid === 1 ? '' : 's'} are excluded and recorded`);
+  if (inferred) bits.push(`${inferred} inferred signal${inferred === 1 ? ' is' : 's are'} discounted by confidence`);
+  if (unverifiable) bits.push(`${unverifiable} unknown signal${unverifiable === 1 ? ' leaves' : 's leave'} values unchanged and reduce confidence`);
+  if (invalid) bits.push(`${invalid} invalid signal${invalid === 1 ? ' is' : 's are'} excluded and recorded`);
   explanationNode.textContent = bits.join('. ') + '.';
 }
 
