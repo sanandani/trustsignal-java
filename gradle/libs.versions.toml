@@ -1,0 +1,13 @@
+[versions]
+junit = "5.11.4"
+jqwik = "1.9.2"
+archunit = "1.3.0"
+jmh = "1.37"
+
+[libraries]
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+jqwik = { module = "net.jqwik:jqwik", version.ref = "jqwik" }
+archunit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
+jmh-generator = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
