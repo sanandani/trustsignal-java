@@ -2,6 +2,7 @@ plugins {
     `java-library`
     application
     jacoco
+    id("org.cyclonedx.bom") version "3.6.1"
 }
 
 application { mainClass.set("io.github.sanandani.trustsignal.example.Main") }

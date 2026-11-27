@@ -15,7 +15,7 @@ jobs:
         with: { distribution: temurin, java-version: '21', cache: gradle }
       - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a
       - run: ./gradlew build
-      - run: mkdir -p dist && cp build/libs/*.jar dist/ && ./gradlew cyclonedxBom && cp build/reports/bom.json dist/sbom.json
+      - run: mkdir -p dist && cp build/libs/*.jar dist/ && ./gradlew cyclonedxBom -P cyclonedxDestination=build/reports && cp build/reports/cyclonedx/bom.json dist/sbom.json
       - uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be
         with: { subject-path: 'dist/*' }
       - uses: actions/attest-sbom@bd218ad0dbcb3e146bd073d1d9c6d78e08aa8a0b
