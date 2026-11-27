@@ -4,7 +4,6 @@ import path from 'node:path';
 const source = path.resolve(process.argv[2]);
 const output = path.resolve(process.argv[3]);
 const docsRoot = path.basename(output) === 'docs' ? output : path.join(output, 'docs');
-const siteRoot = path.resolve(process.argv[4] ?? 'site');
 const baseUrl = process.env.PAGES_BASE_URL ?? '/trustsignal-java/';
 const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const inline = (value) => escapeHtml(value)
@@ -91,7 +90,8 @@ function walk(from, into) {
 }
 
 fs.mkdirSync(output, { recursive: true });
-fs.cpSync(siteRoot, output, { recursive: true });
+const landingPath = path.join(path.dirname(docsRoot), 'index.html');
+if (fs.existsSync(landingPath)) fs.writeFileSync(landingPath, fs.readFileSync(landingPath, 'utf8').replaceAll('__SITE_BASE__', baseUrl));
 fs.rmSync(path.join(output, 'docs'), { recursive: true, force: true });
 fs.rmSync(path.join(output, 'docs.css'), { force: true });
 walk(source, docsRoot);
