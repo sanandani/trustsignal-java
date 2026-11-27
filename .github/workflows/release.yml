@@ -21,7 +21,7 @@ jobs:
           ref: ${{ inputs.tag || github.ref }}
       - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
         with: { distribution: temurin, java-version: '21', cache: gradle }
-      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a
+      - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c
       - run: ./gradlew build
       - run: |
           mkdir -p build/reports/cyclonedx
