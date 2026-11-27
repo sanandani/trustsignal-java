@@ -14,11 +14,12 @@ jobs:
       - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
         with: { distribution: temurin, java-version: '21', cache: gradle }
       - run: ./gradlew buildSite
-      - uses: Azure/static-web-apps-deploy@1a947af7e53e6a7b7e7b06e13747a9ee2f9b9260
+      - uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
-          app_location: build/site
+          app_location: site
+          app_artifact_location: build/site
           output_location: ''
           skip_app_build: true

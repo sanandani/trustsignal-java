@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - uses: github/codeql-action/init@fca7ace96b7d7f0f30c6fb8a1e6a68e5d1d5a96b
+      - uses: github/codeql-action/init@915412ff23e8b7659517e607487dbeae018f2934
         with: { languages: java-kotlin }
-      - uses: github/codeql-action/autobuild@fca7ace96b7d7f0f30c6fb8a1e6a68e5d1d5a96b
-      - uses: github/codeql-action/analyze@fca7ace96b7d7f0f30c6fb8a1e6a68e5d1d5a96b
+      - uses: github/codeql-action/autobuild@915412ff23e8b7659517e607487dbeae018f2934
+      - uses: github/codeql-action/analyze@915412ff23e8b7659517e607487dbeae018f2934
