@@ -2,7 +2,6 @@ plugins {
     `java-library`
     application
     jacoco
-    id("org.cyclonedx.bom") version "3.6.1"
 }
 
 application { mainClass.set("io.github.sanandani.trustsignal.example.Main") }
@@ -66,6 +65,8 @@ tasks.register<Exec>("buildSite") {
         copy { from("site"); into(out) }
         file("site/app.js").copyTo(File(out, "app.js"), overwrite = true)
         copy { from(tasks.javadoc); into(File(out, "api")) }
+        file("site/404.html").copyTo(File(out, "docs/404.html"), overwrite = true)
     }
-    commandLine("node", "gradle/site.mjs", "docs", "build/site/docs")
+    doFirst { environment("PAGES_BASE_URL", System.getenv("PAGES_BASE_URL") ?: "/") }
+    commandLine("node", "gradle/site.mjs", "docs", "build/site/docs", "site")
 }

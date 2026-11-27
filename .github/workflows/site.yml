@@ -1,8 +1,8 @@
-name: Deploy static site
+name: Deploy Azure static site
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'site/**', 'src/**', 'build.gradle.kts']
+    paths: ['docs/**', 'site/**', 'src/**', 'build.gradle.kts', 'gradle/site.mjs']
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,7 +13,10 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
         with: { distribution: temurin, java-version: '21', cache: gradle }
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a
       - run: ./gradlew buildSite
+        env:
+          PAGES_BASE_URL: /
       - uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}

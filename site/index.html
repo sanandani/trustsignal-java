@@ -5,41 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Explore synthetic ACE-U trust-signal examples with TrustSignal Java.">
   <title>TrustSignal Java — ACE-U explorer</title>
-  <link rel="stylesheet" href="/style.css">
-  <script src="/app.js" defer></script>
+  <link rel="stylesheet" href="/trustsignal-java/style.css">
+  <script src="/trustsignal-java/app.js" defer></script>
 </head>
 <body>
-<header class="topbar"><a class="brand" href="/">TrustSignal <span>Java</span></a><nav aria-label="Main navigation"><a href="#explorer">Explore examples</a><a href="/docs/ARCHITECTURE.html">Docs</a><a href="/api/">API</a><a href="https://github.com/sanandani/trustsignal-java">GitHub ↗</a></nav></header>
+<header class="topbar"><a class="brand" href="/trustsignal-java/">TrustSignal <span>Java</span></a><nav aria-label="Main navigation"><a href="#explorer">Explore examples</a><a href="/trustsignal-java/docs/ARCHITECTURE.html">Docs</a><a href="/trustsignal-java/api/">API</a><a href="https://github.com/sanandani/trustsignal-java">GitHub ↗</a></nav></header>
 <main>
-  <section class="hero">
-    <p class="eyebrow"><span class="status-dot"></span> Java 21+ · Apache-2.0 · zero runtime dependencies</p>
-    <h1>Trust, shown in<br><em>four dimensions.</em></h1>
-    <p class="lead">Explore how evidence can support Authenticity, Credibility, Empathy, and Uniqueness without collapsing them into one score.</p>
-    <a class="button" href="#explorer">Try the interactive example <span aria-hidden="true">↓</span></a>
-    <div class="hero-aside"><span>ACE-U</span><span>AUTHENTICITY / CREDIBILITY / EMPATHY / UNIQUENESS</span></div>
-  </section>
-
-  <section id="explorer" class="explorer-section">
-    <div class="section-heading"><div><p class="eyebrow">Interactive sandbox</p><h2>Explore a sample profile</h2></div><p>Switch between synthetic scenarios or change an evidence status to see how values and confidence respond.</p></div>
-    <div class="explorer-card">
-      <div class="scenario-bar"><div class="scenario-picker"><label for="scenario">Sample profile</label><select id="scenario"><option value="balanced">Community contributor</option><option value="expert">Research specialist</option><option value="newcomer">New participant</option></select></div><p class="synthetic-tag"><span>✳</span> Synthetic data</p></div>
-      <div class="profile-intro"><div class="avatar" id="avatar">CC</div><div><h3 id="profile-name">Casey Chen</h3><p id="profile-summary">Open-source maintainer · 4 sample signals</p></div><span class="sample-badge">DEMO PROFILE</span></div>
-      <div class="dimensions" id="dimensions" aria-live="polite"></div>
-      <div class="evidence-area"><div class="evidence-heading"><h3>Evidence signals</h3><span>Change a status to explore</span></div><div id="evidence-list"></div></div>
-      <div class="explanation"><span class="explain-icon">↳</span><p id="explanation">Verified signals contribute at full configured weight. Unverifiable signals leave values unchanged and reduce confidence.</p></div>
-    </div>
-    <p class="no-total"><span>✳</span> Four dimensions stay separate by design. There is no combined or “overall trust” score.</p>
-  </section>
-
+  <section class="hero"><p class="eyebrow"><span class="status-dot"></span> Java 21+ · Apache-2.0 · zero runtime dependencies</p><h1>Trust, shown in<br><em>four dimensions.</em></h1><p class="lead">Explore how evidence can support Authenticity, Credibility, Empathy, and Uniqueness without collapsing them into one score.</p><a class="button" href="#explorer">Try the interactive example <span aria-hidden="true">↓</span></a><div class="hero-aside"><span>ACE-U</span><span>AUTHENTICITY / CREDIBILITY / EMPATHY / UNIQUENESS</span></div></section>
+  <section id="explorer" class="explorer-section"><div class="section-heading"><div><p class="eyebrow">Interactive sandbox</p><h2>Explore a sample profile</h2></div><p>Switch between synthetic scenarios or change an evidence status to see how values and confidence respond.</p></div><div class="explorer-card"><div class="scenario-bar"><div class="scenario-picker"><label for="scenario">Sample profile</label><select id="scenario"><option value="balanced">Community contributor</option><option value="expert">Research specialist</option><option value="newcomer">New participant</option></select></div><p class="synthetic-tag"><span>✳</span> Synthetic data</p></div><div class="profile-intro"><div class="avatar" id="avatar">CC</div><div><h3 id="profile-name">Casey Chen</h3><p id="profile-summary">Open-source maintainer · 4 sample signals</p></div><span class="sample-badge">DEMO PROFILE</span></div><div class="dimensions" id="dimensions" aria-live="polite"></div><div class="evidence-area"><div class="evidence-heading"><h3>Evidence signals</h3><span>Change a status to explore</span></div><div id="evidence-list"></div></div><div class="explanation"><span class="explain-icon">↳</span><p id="explanation">Verified signals contribute at full configured weight. Unverifiable signals leave values unchanged and reduce confidence.</p></div></div><p class="no-total"><span>✳</span> Four dimensions stay separate by design. There is no combined or “overall trust” score.</p></section>
   <section class="how-section"><p class="eyebrow">How to read this</p><div class="how-grid"><article><span class="number">01</span><h3>Value</h3><p>A weighted summary of the sample evidence that is verified or inferred for that dimension.</p></article><article><span class="number">02</span><h3>Confidence</h3><p>How much of the configured evidence weight has a usable verification state.</p></article><article><span class="number">03</span><h3>Explanation</h3><p>See which synthetic signals contribute, remain unknown, or are excluded as invalid.</p></article></div></section>
-
   <section class="start-section"><div><p class="eyebrow">Use it in Java</p><h2>Build on the same model.</h2><p>Compose injected verification capabilities, score each ACE-U dimension, and keep the result interpretable.</p></div><pre><code>var result = scorer.score(evidence);
 result.profile().dimensions()
     .forEach((dimension, score) -&gt;
         System.out.println(dimension + ": " + score.value()));</code></pre></section>
-
   <aside class="caveat"><span>!</span><p><strong>Conceptual framework; not empirically validated.</strong> Sample values are illustrative only. They are not calibrated probabilities, an identity assessment, or a measure of a person's worth or overall trustworthiness.</p></aside>
 </main>
-<footer><a class="brand" href="/">TrustSignal <span>Java</span></a><p>Reference implementation for explicit, multidimensional trust signals.</p><nav><a href="https://github.com/sanandani/trustsignal-java">Repository</a><a href="/docs/DESIGN.html">Research mapping</a><a href="/docs/THREAT_MODEL.html">Threat model</a><a href="/api/">Javadoc</a></nav></footer>
+<footer><a class="brand" href="/trustsignal-java/">TrustSignal <span>Java</span></a><p>Reference implementation for explicit, multidimensional trust signals.</p><nav><a href="https://github.com/sanandani/trustsignal-java">Repository</a><a href="/trustsignal-java/docs/DESIGN.html">Research mapping</a><a href="/trustsignal-java/docs/THREAT_MODEL.html">Threat model</a><a href="/trustsignal-java/api/">Javadoc</a></nav></footer>
 </body>
 </html>
