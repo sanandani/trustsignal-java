@@ -5,3 +5,4 @@
 - Initial Java 21 reference implementation of trust signal verification and separate ACE-U dimensions.
 - Includes JDK Ed25519 adapter, virtual-thread verifier, architecture and property tests, and static documentation source.
 - Conceptual framework; not empirically validated.
+- Expanded the runnable example and README with synthetic verified, inferred, unverifiable, and invalid outcomes. Thanks to [@RaV-u](https://github.com/RaV-u) in [#18](https://github.com/sanandani/trustsignal-java/pull/18).
