@@ -27,6 +27,8 @@ result.profile().dimensions().forEach((dimension, score) ->
 
 Run the composition-root example with `./gradlew run` (or `io.github.sanandani.trustsignal.example.Main` from an IDE). See [API Javadoc](https://sanandani.github.io/trustsignal-java/api/) and [docs](docs/ARCHITECTURE.md).
 
+The example uses one synthetic claim to show all four evidence outcomes. `Verified` contributes its dimension values at full confidence. `Inferred` contributes the same values with the stated `0.5` confidence. A `TIMEOUT` makes the claim `Unverifiable`: it is not scored and its explanation says why. A `BAD_SIGNATURE` makes it `Invalid`: the claim appears in `excluded` rather than in the profile. The example does not perform a real signature check or establish anyone's identity.
+
 ## Design principles
 
 - Keep four dimensions distinct; there is no scalar, total, or overall profile score.
